@@ -26,6 +26,7 @@
     "eslint": "7.x",
     "eslint-config-airbnb-base": "14.x",
     "eslint-plugin-import": "2.x",
+    "gh-pages": "^5.0.0",
     "hint": "7.x",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
