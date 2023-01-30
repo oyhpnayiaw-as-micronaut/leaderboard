@@ -8,7 +8,8 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "linters": "hint . && stylelint \"**/*.{css,scss}\" && eslint ."
+    "linters": "hint . && stylelint \"**/*.{css,scss}\" && eslint .",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "keywords": [
     "webpack",
