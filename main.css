@@ -63,7 +63,21 @@ section {
   border: 2px solid var(--dark-gray);
   list-style: none;
   overflow-x: hidden;
+  overflow-y: auto;
   max-height: calc(100vh - 200px);
+  scrollbar-color: var(--primary) var(--gray);
+  scrollbar-width: thin;
+}
+
+#score-list::-webkit-scrollbar {
+  width: 8px;
+  background: var(--gray);
+  -webkit-border-radius: 1ex;
+}
+
+#score-list::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  -webkit-border-radius: 1ex;
 }
 
 #score-list:empty {
