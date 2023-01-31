@@ -1,11 +1,35 @@
-const scores = [
-  { name: 'Foo', score: 50 },
-  { name: 'Bar', score: 40 },
-  { name: 'Baz', score: 70 },
-];
+// prettier-ignore
+const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/29cBKkcvADO2eJ5Tc14c/scores';
 
-const addScore = (newScore) => {
-  scores.push(newScore);
+const getScores = async () => {
+  const res = await fetch(url);
+
+  if (!res.ok) throw new Error('Error fetching scores');
+
+  const data = await res.json();
+  return data.result;
 };
 
-export { scores, addScore };
+const addScore = async (newScore) => {
+  if (!newScore.user || !newScore.score) throw new Error('Invalid score data');
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newScore),
+  });
+
+  if (!res.ok) throw new Error('Error adding score');
+
+  return newScore;
+};
+
+const createScoreEl = (score) => {
+  const li = document.createElement('li');
+  li.textContent = `${score.user}: ${score.score}`;
+  return li;
+};
+
+export { addScore, createScoreEl, getScores };

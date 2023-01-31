@@ -1,23 +1,32 @@
 import './style.css';
 
-import { scores, addScore } from './score.js';
+import { getScores, addScore, createScoreEl } from './score.js';
 
 const scoreList = document.querySelector('#score-list');
+const addScoreForm = document.querySelector('#add-score-form');
+const refreshBtn = document.querySelector('#refresh-btn');
 
-const addScoreToDom = (score) => {
-  const li = document.createElement('li');
-  li.textContent = `${score.name}: ${score.score}`;
-  scoreList.appendChild(li);
+const refreshScore = async () => {
+  const scores = await getScores();
+  const scoreEL = scores.map(createScoreEl);
+  scoreList.append(...scoreEL);
 };
 
-const addScoreForm = document.querySelector('#add-score-form');
+refreshBtn.addEventListener('click', () => {
+  scoreList.innerHTML = '';
+  refreshScore();
+});
 
-addScoreForm.addEventListener('submit', (e) => {
+addScoreForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const { name, score } = e.target.elements;
-  addScore({ name: name.value, score: score.value });
-  addScoreToDom({ name: name.value, score: score.value });
+  const { user, score } = e.target.elements;
+  const newScore = { user: user.value, score: score.valueAsNumber };
+
+  await addScore(newScore);
+  const scoreEl = createScoreEl(newScore);
+
+  scoreList.appendChild(scoreEl);
   e.target.reset();
 });
 
-scores.forEach(addScoreToDom);
+refreshScore();
