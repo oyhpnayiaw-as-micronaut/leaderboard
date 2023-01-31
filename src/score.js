@@ -1,5 +1,5 @@
-// prettier-ignore
-const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/29cBKkcvADO2eJ5Tc14c/scores';
+const gameId = '29cBKkcvADO2eJ5Tc14c';
+const url = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${gameId}/scores`;
 
 const getScores = async () => {
   const res = await fetch(url);
