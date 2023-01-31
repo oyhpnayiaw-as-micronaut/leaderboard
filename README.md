@@ -30,7 +30,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 TODO List Application <a name="about-project"></a>
+# 📖 Leaderboard Application <a name="about-project"></a>
 
 Leaderboard APP
 
