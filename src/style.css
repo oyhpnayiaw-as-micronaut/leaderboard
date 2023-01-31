@@ -64,7 +64,7 @@ section {
   border: 2px solid var(--dark-gray);
   list-style: none;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: calc(100vh - 200px);
   scrollbar-color: var(--primary) var(--gray);
   scrollbar-width: thin;
