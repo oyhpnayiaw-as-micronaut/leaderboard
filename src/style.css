@@ -1,20 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 :root {
+  --primary: rgb(200, 206, 235);
   --gray: #ccc;
   --dark-gray: #999;
   --light-gray: #eee;
+  --font-family: 'Roboto', sans-serif;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
-button {
-  cursor: pointer;
-  background-color: var(--light-gray);
-  border: 1px solid var(--dark-gray);
-  padding: 4px 12px;
+html {
+  font-family: var(--font-family);
 }
 
 body {
@@ -23,6 +25,18 @@ body {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+  background-color: var(--primary);
+  border: 1px solid var(--dark-gray);
+  padding: 4px 12px;
+  transition: 250ms;
+}
+
+button:hover {
+  background-color: var(--light-gray);
 }
 
 .row {
@@ -49,6 +63,22 @@ section {
 #score-list {
   border: 2px solid var(--dark-gray);
   list-style: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  scrollbar-color: var(--primary) var(--gray);
+  scrollbar-width: thin;
+}
+
+#score-list::-webkit-scrollbar {
+  width: 8px;
+  background: var(--gray);
+  -webkit-border-radius: 1ex;
+}
+
+#score-list::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  -webkit-border-radius: 1ex;
 }
 
 #score-list:empty {
@@ -59,8 +89,12 @@ section {
   padding: 10px;
 }
 
+#score-list li.slide-in {
+  animation: slide-in 250ms;
+}
+
 #score-list li:nth-child(even) {
-  background-color: var(--light-gray);
+  background-color: rgba(200, 206, 235, 0.4);
 }
 
 #add-score-form {
@@ -75,4 +109,14 @@ section {
   width: 100%;
   padding: 8px 12px;
   border: 1px solid var(--dark-gray);
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
